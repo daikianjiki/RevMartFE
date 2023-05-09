@@ -1,0 +1,9 @@
+<form>
+    <label>Username:</label>
+    <input type="text" class="form-control" [(ngModel)]='user.username' [ngModelOptions]="{standalone: true}">
+    <br>
+    <label>Password:</label>
+    <input type="password" class="form-control" [(ngModel)]='user.password' [ngModelOptions]="{standalone: true}">
+    <br>
+    <button type="button" class="btn btn-success" (click) = 'registerSubmit()'>Login</button>
+</form>

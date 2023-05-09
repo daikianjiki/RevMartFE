@@ -1,0 +1,28 @@
+<ng-template #content2 let-modal>
+    <div class="modal-header">
+        <h4 class="modal-title">Login</h4>
+        <button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+    </div>
+    <div class="modal-body">
+        <app-login-form></app-login-form>
+    </div>
+</ng-template>
+<ng-template #content let-modal>
+	<div class="modal-header">
+		<h4 class="modal-title">Registeration Form</h4>
+		<button type="button" class="btn-close" aria-label="Close" (click)="modal.dismiss('Cross click')"></button>
+	</div>
+	<div class="modal-body">
+		<app-register-form></app-register-form>
+	</div>
+</ng-template>
+<app-login-form></app-login-form>
+
+
+
+<button class="btn btn-primary mb-2 me-2" (click)="openLoginModal(content2)">
+    Login
+</button>
+<button class="btn btn-primary mb-2 me-2" (click)="openRegisterModal(content)">
+	Register
+</button>

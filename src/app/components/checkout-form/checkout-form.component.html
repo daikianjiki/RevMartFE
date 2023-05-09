@@ -1,0 +1,8 @@
+<p>checkout-form works!</p>
+<div *ngFor="let product of cart">
+    {{product.name}}
+    {{product.quantity}}
+    {{product.quantity * product.price}}
+    <button (click)="removeFromCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">remove product</button>
+</div>
+<button (click)="checkout()">Checkout Now</button>
