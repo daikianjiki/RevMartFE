@@ -1,3 +1,4 @@
+<!-- modal for login -->
 <ng-template #content2 let-modal>
     <div class="modal-header">
         <h4 class="modal-title">Login</h4>
@@ -7,6 +8,7 @@
         <app-login-form></app-login-form>
     </div>
 </ng-template>
+<!-- modal for registration -->
 <ng-template #content let-modal>
 	<div class="modal-header">
 		<h4 class="modal-title">Registeration Form</h4>
@@ -16,13 +18,12 @@
 		<app-register-form></app-register-form>
 	</div>
 </ng-template>
-<app-login-form></app-login-form>
 
-
-
-<button class="btn btn-primary mb-2 me-2" (click)="openLoginModal(content2)">
-    Login
-</button>
-<button class="btn btn-primary mb-2 me-2" (click)="openRegisterModal(content)">
-	Register
-</button>
+<div class="container">
+    <button class="btn btn-warning btn-lg mb-2 me-2" (click)="openLoginModal(content2)">
+        Login
+    </button>
+    <button class="btn btn-success btn-lg mb-2 me-2" (click)="openRegisterModal(content)">
+        Register
+    </button>
+</div>
