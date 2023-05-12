@@ -1,0 +1,15 @@
+app-footer {
+    position: fixed;
+    bottom: 0;
+    border-radius: 50px;
+    color: white;
+    max-width: 100%;
+    width:100%;
+}
+
+app-navbar {
+    position: fixed;
+    max-width: 100%;
+    width: 100%;
+    z-index: 1;
+}

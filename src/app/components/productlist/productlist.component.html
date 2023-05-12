@@ -1,6 +1,10 @@
-<p>productlist works!</p>
-<div *ngFor="let product of products">
-    {{product.name}}
-    {{product.price}}
-    <button (click)="addToCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">Add to Cart</button>
+<div class="container">
+    <div class="card" *ngFor="let product of products">
+        <img src="https://mdbcdn.b-cdn.net/img/new/standard/nature/184.webp" class="card-img-top" alt="Fissure in Sandstone"/>
+        <div class="card-body">
+            <h5 class="card-title">{{product.name}}</h5>
+            <p class="card-text">{{product.price | currency}}</p>
+            <button (click)="addToCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">Add to Cart</button>
+        </div>
+    </div>
 </div>

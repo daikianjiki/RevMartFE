@@ -1,8 +1,25 @@
-<p>checkout-form works!</p>
-<div *ngFor="let product of cart">
-    {{product.name}}
-    {{product.quantity}}
-    {{product.quantity * product.price}}
-    <button (click)="removeFromCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">remove product</button>
+<div class="container">
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Product</th>
+                <th scope="col">Quanitity</th>
+                <th scope="col">Remove</th>
+                <th scope="col">Price</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let product of cart; index as i">
+                <th scope="row">{{ i + 1 }}</th>
+                <td>{{ product.name }}</td>
+                <td>{{ product.quantity }}</td>
+                <td>
+                    <button (click)="removeFromCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">remove product</button>
+                </td>
+                <td>{{ product.price * product.quantity | currency }}</td>
+            </tr>
+        </tbody>
+        <button (click)="checkout()">Checkout</button>
+    </table>
 </div>
-<button (click)="checkout()">Checkout Now</button>

@@ -43,9 +43,9 @@
 .container {
     display: flex;
     justify-content: space-evenly;
-    
+    padding: 18em;
 }
 
 .container button {
-    width: 25%;
+    width: 100%;
 }
