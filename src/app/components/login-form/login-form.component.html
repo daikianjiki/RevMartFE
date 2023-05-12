@@ -5,5 +5,5 @@
     <label>Password:</label>
     <input type="password" class="form-control" [(ngModel)]='user.password' [ngModelOptions]="{standalone: true}">
     <br>
-    <button type="button" class="btn btn-success" (click) = 'loginSubmit()'>Login</button>
+    <button type="button" class="btn btn-primary" (click) = 'loginSubmit()' routerLink="/products">Login</button>
 </form>

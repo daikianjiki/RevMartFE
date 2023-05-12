@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-register-form',
@@ -18,13 +20,32 @@ export class RegisterFormComponent {
   }
 
   constructor(
-    private userService : UserService
+    private userService : UserService,
+    private modalService : NgbModal
   ) {}
 
   registerSubmit() {
     this.userService.register(this.user).subscribe(json => {
       this.user = json as User;
       console.log(this.user);
+    })
+    this.modalService.dismissAll();
+  
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Registeration successful!'
     })
   }
 

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-checkout-form',
@@ -39,6 +40,19 @@ export class CheckoutFormComponent implements OnInit{
 
   checkout() {
     this.userService.checkout(this.userService.loggedinUser.id, this.user).subscribe(json => {
+      this.userService.loggedinUser = json as User;
+      this.ngOnInit();
+    })
+    Swal.fire({
+      title:'Your order is complete!',
+      text:'Thank you for your business, your order will be available for pickup in 2 hours.',
+      icon:'success',
+      confirmButtonColor: '#70A9A1'
+    })
+  }
+
+  addToCart(uid : number, pid : number, user : User) {
+    this.userService.addToCart(uid, pid, user).subscribe(json => {
       this.userService.loggedinUser = json as User;
       this.ngOnInit();
     })

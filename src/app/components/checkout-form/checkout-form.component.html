@@ -1,25 +1,34 @@
 <div class="container">
     <table class="table table-striped">
-        <thead>
+        <thead class="text-center">
             <tr>
-                <th scope="col">#</th>
+                <th scope="col"></th>
+                <th scope="col"></th>
                 <th scope="col">Product</th>
-                <th scope="col">Quanitity</th>
-                <th scope="col">Remove</th>
+                <th scope="col"></th>
+                <th scope="col">Quantity</th>
+                <th scope="col"></th>
                 <th scope="col">Price</th>
             </tr>
         </thead>
-        <tbody>
+        <tbody class="text-center">
             <tr *ngFor="let product of cart; index as i">
                 <th scope="row">{{ i + 1 }}</th>
+                <th><img style="width: 70px" src="http://localhost:9000/{{ product.img }}"></th>
                 <td>{{ product.name }}</td>
+                <td>
+                    <button class="btn btn-primary" (click)="addToCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">add quantity</button>
+                </td>
                 <td>{{ product.quantity }}</td>
                 <td>
-                    <button (click)="removeFromCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">remove product</button>
+                    <button class="btn btn-primary" (click)="removeFromCart(this.userService.loggedinUser.id, product.id, this.userService.loggedinUser)">remove quantity</button>
                 </td>
                 <td>{{ product.price * product.quantity | currency }}</td>
             </tr>
         </tbody>
-        <button (click)="checkout()">Checkout</button>
+        <div class="total">
+            <h2>Your total: {{ this.userService.loggedinUser.balance | currency }}</h2>
+            <button class="btn btn-primary" (click)="checkout()">Checkout</button>
+        </div>
     </table>
 </div>

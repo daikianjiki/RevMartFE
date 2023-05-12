@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { User } from 'src/app/models/user';
 import { UserService } from 'src/app/services/user.service';
 import { FormsModule } from '@angular/forms';
+import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-login-form',
@@ -18,13 +20,31 @@ export class LoginFormComponent {
     cart: []
   }
   
-  constructor( private userService : UserService ) {}
+  constructor(
+    private userService : UserService,
+    private modalServie : NgbModal) {}
   
   loginSubmit() {
     this.userService.login(this.user).subscribe(json => {
       this.userService.loggedinUser = json as any;
       console.log(this.userService.loggedinUser);
     })
+    this.modalServie.dismissAll();
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Login successful!'
+    })
   }
-
 }

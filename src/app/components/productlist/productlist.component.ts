@@ -3,6 +3,7 @@ import { Product } from 'src/app/models/product';
 import { User } from 'src/app/models/user';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-productlist',
@@ -21,6 +22,7 @@ export class ProductlistComponent implements OnInit{
       this.productService.getAllProducts().subscribe(json => {
         this.products = json as Product[]; 
         console.log(this.products);
+        console.log(this.products[1].img);
       })
   }
 
@@ -29,6 +31,22 @@ export class ProductlistComponent implements OnInit{
       this.userService.loggedinUser = json as any;
       console.log(`${user.cart[pid-1].name} was added to the cart`);
       console.log(user.cart);
+    })
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 3000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Item added to cart'
     })
   }
 }
