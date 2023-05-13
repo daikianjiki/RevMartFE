@@ -22,16 +22,14 @@ export class ProductlistComponent implements OnInit{
       this.productService.getAllProducts().subscribe(json => {
         this.products = json as Product[]; 
         console.log(this.products);
-        console.log(this.products[1].img);
       })
   }
 
   addToCart(uid : number, pid : number, user : User) {
     this.userService.addToCart(uid, pid, user).subscribe( json => {
-      this.userService.loggedinUser = json as any;
-      console.log(`${user.cart[pid-1].name} was added to the cart`);
-      console.log(user.cart);
+      this.userService.loggedinUser = json as User;
     })
+    console.log(`${user.cart[pid-1].name} was added to the cart`);
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
