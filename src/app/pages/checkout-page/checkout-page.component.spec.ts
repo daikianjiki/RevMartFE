@@ -1,14 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutPageComponent } from './checkout-page.component';
+import { CheckoutFormComponent } from 'src/app/components/checkout-form/checkout-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('CheckoutPageComponent', () => {
   let component: CheckoutPageComponent;
   let fixture: ComponentFixture<CheckoutPageComponent>;
-
+  
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ CheckoutPageComponent ]
+      imports: [ HttpClientTestingModule ],
+      declarations: [ 
+        CheckoutPageComponent, 
+        CheckoutFormComponent 
+      ]
     })
     .compileComponents();
 

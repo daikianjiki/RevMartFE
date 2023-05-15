@@ -1,6 +1,8 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { CheckoutFormComponent } from './checkout-form.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { UserService } from 'src/app/services/user.service';
 
 describe('CheckoutFormComponent', () => {
   let component: CheckoutFormComponent;
@@ -8,6 +10,8 @@ describe('CheckoutFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
+      imports: [HttpClientTestingModule],
+      providers: [UserService],
       declarations: [ CheckoutFormComponent ]
     })
     .compileComponents();
