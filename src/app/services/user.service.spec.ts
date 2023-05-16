@@ -35,7 +35,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/register`);
+    const req = http.expectOne(`${service.serverAddress}/user/register`);
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
   });
@@ -45,7 +45,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/login`);
+    const req = http.expectOne(`${service.serverAddress}/user/login`);
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
   });
@@ -55,7 +55,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/1/addProduct/1`);
+    const req = http.expectOne(`${service.serverAddress}/user/1/addProduct/1`);
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
   });
@@ -65,7 +65,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/1/removeProduct/1`);
+    const req = http.expectOne(`${service.serverAddress}/user/1/removeProduct/1`);
     expect(req.request.method).toBe('POST');
     req.flush(mockUser);
   });
@@ -75,7 +75,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/1`);
+    const req = http.expectOne(`${service.serverAddress}/user/1`);
     expect(req.request.method).toBe('GET');
     req.flush(mockUser);
   });
@@ -85,7 +85,7 @@ describe('UserService', () => {
       expect(json).toEqual(mockUser);
     });
 
-    const req = http.expectOne(`${service.ev}/user/1/emptyCart`);
+    const req = http.expectOne(`${service.serverAddress}/user/1/emptyCart`);
     expect(req.request.method).toBe('PATCH');
     req.flush(mockUser);
   })

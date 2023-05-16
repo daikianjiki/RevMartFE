@@ -30,7 +30,7 @@ describe('ProductService', () => {
       expect(json).toEqual(mockProducts);
     });
 
-    const req = http.expectOne(`${service.ev}/product`);
+    const req = http.expectOne(`${service.serverAddress}/product`);
     expect(req.request.method).toBe('GET');
     req.flush(mockProducts);
   })
