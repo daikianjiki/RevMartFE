@@ -24,12 +24,19 @@ export class LoginFormComponent {
     private userService : UserService,
     private modalServie : NgbModal) {}
   
+    /**
+     * Submit the login form and log in a user.
+     */
   loginSubmit() {
     this.userService.login(this.user).subscribe(json => {
       this.userService.loggedinUser = json as any;
       console.log(this.userService.loggedinUser);
     })
+
+    // Dismiss a modal
     this.modalServie.dismissAll();
+
+    // Display a success notification using Swal library.
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',
@@ -41,7 +48,6 @@ export class LoginFormComponent {
         toast.addEventListener('mouseleave', Swal.resumeTimer)
       }
     })
-    
     Toast.fire({
       icon: 'success',
       title: 'Login successful!'

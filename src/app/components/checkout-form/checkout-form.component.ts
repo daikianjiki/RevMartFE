@@ -22,6 +22,9 @@ export class CheckoutFormComponent implements OnInit{
 
   constructor(public userService : UserService) {}
 
+  /**
+   * Initializes the component with a list of product inside the cart.
+   */
   ngOnInit(): void {
     this.userService.getUserById(this.userService.loggedinUser.id).subscribe(json => {
       this.user = json as User;
@@ -31,18 +34,33 @@ export class CheckoutFormComponent implements OnInit{
     })
   }
 
+  /**
+   * Removes a product from a logged-in user's cart.
+   * @param uid The user ID
+   * @param pid The product ID to be removed from the cart.
+   * @param user The user object.
+   */
   removeFromCart(uid : number, pid : number, user : User) {
     this.userService.removeFromCart(uid, pid, user).subscribe(json => {
       this.userService.loggedinUser = json as User;
+
+      //Re-initialize the logged-in user's cart.
       this.ngOnInit();
     })
   }
 
+  /**
+   * Perform the checkout process for a logged-in user.
+   */
   checkout() {
     this.userService.checkout(this.userService.loggedinUser.id, this.user).subscribe(json => {
       this.userService.loggedinUser = json as User;
+
+      //Re-initialize the logged-in user's cart.
       this.ngOnInit();
     })
+
+    // Display a success notifiation using Swal library.
     Swal.fire({
       title:'Your order is complete!',
       text:'Thank you for your business, your order will be available for pickup in 2 hours.',
@@ -51,11 +69,18 @@ export class CheckoutFormComponent implements OnInit{
     })
   }
 
+  /**
+   * Add a product to the logged-in user's cart.
+   * @param uid The user ID.
+   * @param pid The product ID.
+   * @param user The user object.
+   */
   addToCart(uid : number, pid : number, user : User) {
     this.userService.addToCart(uid, pid, user).subscribe(json => {
       this.userService.loggedinUser = json as User;
+
+      //Re-initialize the logged-in user's cart.
       this.ngOnInit();
     })
   }
-
 }

@@ -24,13 +24,19 @@ export class RegisterFormComponent {
     private modalService : NgbModal
   ) {}
 
+  /**
+   * Submit the registration form and register a user.
+   */
   registerSubmit() {
     this.userService.register(this.user).subscribe(json => {
       this.user = json as User;
       console.log(this.user);
     })
+
+    // Dismiss a modal
     this.modalService.dismissAll();
-  
+    
+    // Display a success notification using Swal library.
     const Toast = Swal.mixin({
       toast: true,
       position: 'top-end',

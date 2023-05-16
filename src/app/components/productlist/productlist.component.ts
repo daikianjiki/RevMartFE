@@ -18,6 +18,9 @@ export class ProductlistComponent implements OnInit{
     private productService : ProductService,
     public userService : UserService) {}
 
+  /**
+   * Initializes the component with a list of products. 
+   */
   ngOnInit(): void {
       this.productService.getAllProducts().subscribe(json => {
         this.products = json as Product[]; 
@@ -25,26 +28,34 @@ export class ProductlistComponent implements OnInit{
       })
   }
 
+  /**
+   * Add a product to the user's cart.
+   * @param uid  The ID of the user.
+   * @param pid  The ID of the product to be added to the cart.
+   * @param user The user object representing the logged-in user.
+   */
   addToCart(uid : number, pid : number, user : User) {
     this.userService.addToCart(uid, pid, user).subscribe( json => {
       this.userService.loggedinUser = json as User;
-    })
-    console.log(`${user.cart[pid-1].name} was added to the cart`);
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 3000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
-    
-    Toast.fire({
-      icon: 'success',
-      title: 'Item added to cart'
+
+      // Display a duccess notification using Swal library.
+      const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 1000,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+          toast.addEventListener('mouseenter', Swal.stopTimer)
+          toast.addEventListener('mouseleave', Swal.resumeTimer)
+        }
+      })
+      Toast.fire({
+        icon: 'success',
+        title: 'Item added to cart'
+      })
+
+      console.log(`${user.cart[pid-1].name} was added to the cart`);
     })
   }
 }
